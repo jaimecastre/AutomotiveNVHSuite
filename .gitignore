@@ -1,2 +1,4 @@
 
 *.vsidx
+/Calculations/obj
+/Tester/obj
