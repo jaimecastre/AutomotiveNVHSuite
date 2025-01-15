@@ -1,0 +1,15 @@
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\bin\Debug\AutomotiveNVHSuite.exe.config
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\bin\Debug\AutomotiveNVHSuite.exe
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\bin\Debug\AutomotiveNVHSuite.pdb
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.csproj.AssemblyReference.cache
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\MainWindow.g.cs
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\App.g.cs
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite_MarkupCompile.cache
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite_MarkupCompile.lref
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\MainWindow.baml
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.g.resources
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.Properties.Resources.resources
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.csproj.GenerateResource.cache
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.csproj.CoreCompileInputs.cache
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.exe
+C:\HBK\Dev\Personal\AutomotiveNvhSuite\obj\Debug\AutomotiveNVHSuite.pdb
