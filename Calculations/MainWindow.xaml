@@ -15,5 +15,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Button Content="Start remote" Grid.Row="0" Grid.Column="0" Click="ButtonStartRemote_Click"/>
+        <Button Content="Stop remote" Grid.Row="0" Grid.Column="1" Click="ButtonStopRemote_Click"/>
     </Grid>
+
+
+    <Window.DataContext>
+        <local:CalculationsViewModel/>
+    </Window.DataContext>
 </Window>

@@ -2,3 +2,9 @@
 *.vsidx
 /Calculations/obj
 /Tester/obj
+/Calculations/packages
+/packages
+/Tester/bin
+/TesterOld
+/Calculations/bin
+/.vs

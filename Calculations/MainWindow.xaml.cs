@@ -24,5 +24,17 @@ namespace AutomotiveNVHSuite
         {
             InitializeComponent();
         }
+
+        private void ButtonStartRemote_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.StartRemote();
+        }
+
+        private void ButtonStopRemote_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.StopRemote();
+        }
+
+        private CalculationsViewModel ViewModel => (DataContext as CalculationsViewModel);
     }
 }
