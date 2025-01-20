@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         
         <Button Content="Load file" Grid.Column="0" Grid.Row="0" Click="Button_LoadFile_Click"/>
+        <Button Content="Settings" Grid.Column="1" Grid.Row="0" Click="Button_Settings_Click"/>
     </Grid>
 
     <Window.DataContext>

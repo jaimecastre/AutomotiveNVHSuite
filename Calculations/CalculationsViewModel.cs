@@ -60,15 +60,16 @@ namespace AutomotiveNVHSuite
                 {
                     string str = responder.ReceiveFrameString();
 
-                    var oo = JsonConvert.DeserializeObject<CommandAndPayload>(str);
-                    var obj = JsonConvert.DeserializeObject(str) as JObject;
-                    var command = obj["Command"].ToString();
-                    var payload = obj["Payload"].ToString();
+                    var cmd = JsonConvert.DeserializeObject<CommandAndPayload>(str);
                     
-                    switch (command)
+                    switch (cmd.Command)
                     {
                         case "LOADFILE":
-                            LoadFile(payload);
+                            LoadFile(cmd.Payload);
+                            break;
+
+                        case "SETTINGS":
+                            Settings(cmd.Payload);
                             break;
 
                         default:
@@ -86,6 +87,11 @@ namespace AutomotiveNVHSuite
         private void LoadFile(string payload)
         {
             var filename = JsonConvert.DeserializeObject<string>(payload);
+        }
+
+        private void Settings(string payload)
+        {
+            var settings = JsonConvert.DeserializeObject<PropertyPair[]>(payload);
         }
     }
 }

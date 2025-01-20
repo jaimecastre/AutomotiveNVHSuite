@@ -24,15 +24,26 @@ namespace Tester
 
         public void CommandLoadFile(string name)
         {
-            SendCommand(_socket, "LOADFILE", name);
+            SendCommand(_socket, "LOADFILE", JsonConvert.SerializeObject(name));
         }
 
-        private void SendCommand(RequestSocket socket, string command, object payload)
+        public void CommandSettings()
+        {
+            var settings = new[]
+            {
+                new PropertyPair { PropertyName = "NumSources", PropertyValue = "5" },
+                new PropertyPair { PropertyName = "NumIndicators", PropertyValue = "7" }
+            };
+
+            SendCommand(_socket, "SETTINGS", JsonConvert.SerializeObject(settings));
+        }
+
+        private void SendCommand(RequestSocket socket, string command, string payload)
         {
             var cmd = new CommandAndPayload
             {
                 Command = command,
-                Payload = JsonConvert.SerializeObject(payload)
+                Payload = payload
             };
             socket.SendFrame(JsonConvert.SerializeObject(cmd));
             var ans = socket.ReceiveFrameString();

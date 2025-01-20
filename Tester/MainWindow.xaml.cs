@@ -21,11 +21,16 @@ namespace Tester
             InitializeComponent();
         }
 
+        private TesterViewModel ViewModel => (DataContext as TesterViewModel);
+
         private void Button_LoadFile_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CommandLoadFile("c:\\ghej");
         }
 
-        private TesterViewModel ViewModel => (DataContext as TesterViewModel);
+        private void Button_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CommandSettings();
+        }
     }
 }
