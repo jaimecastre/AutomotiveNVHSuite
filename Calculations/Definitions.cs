@@ -14,7 +14,9 @@ namespace AutomotiveNVHSuite
 
     public class PropertyPair
     {
-        public string PropertyName;
-        public string PropertyValue;
+        public string PropertyName { get; set; }
+        public string PropertyValue { get; set; }
     }
+
+    //public class Handle
 }

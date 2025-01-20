@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using NetMQ;
 using NetMQ.Sockets;
 using Newtonsoft.Json;
@@ -17,6 +18,15 @@ namespace AutomotiveNVHSuite
         bool _run = false;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public CalculationsViewModel()
+        {
+            StartRemote();
+        }
+
+        public System.Collections.ObjectModel.ObservableCollection<PropertyPair> Properties { get; } = new System.Collections.ObjectModel.ObservableCollection<PropertyPair>();
+
+        public Dispatcher Dispatcher { get; set; }
 
         public void StartRemote()
         {
@@ -51,25 +61,25 @@ namespace AutomotiveNVHSuite
 
         private void Listener()
         {
-            using (var responder = new ResponseSocket())
+            using (var socket = new ResponseSocket())
             {
-                responder.Bind("tcp://*:5555");
+                socket.Bind("tcp://*:5555");
 
                 _run = true;
                 while (_run)
                 {
-                    string str = responder.ReceiveFrameString();
+                    string str = socket.ReceiveFrameString();
 
                     var cmd = JsonConvert.DeserializeObject<CommandAndPayload>(str);
-                    
+                    bool responded = false;
                     switch (cmd.Command)
                     {
                         case "LOADFILE":
-                            LoadFile(cmd.Payload);
+                            responded = LoadFile(socket, cmd.Payload);
                             break;
 
                         case "SETTINGS":
-                            Settings(cmd.Payload);
+                            Settings(socket, cmd.Payload);
                             break;
 
                         default:
@@ -77,21 +87,52 @@ namespace AutomotiveNVHSuite
                     }
 
                     Status = "Running";
-                    Thread.Sleep(1000);
                     Status = "Finished";
-                    responder.SendFrame("ACK");
+
+                    if (!responded)
+                        SendResponse(socket, "ACK");
                 }
             }
         }
 
-        private void LoadFile(string payload)
+        private void SendResponse(ResponseSocket socket, string msg, string payload = "")
         {
-            var filename = JsonConvert.DeserializeObject<string>(payload);
+            var pkg = new CommandAndPayload
+            {
+                Command = msg,
+                Payload = payload,
+            };
+            socket.SendFrame(JsonConvert.SerializeObject(pkg));
         }
 
-        private void Settings(string payload)
+        private bool LoadFile(ResponseSocket socket, string payload)
+        {
+            var filename = JsonConvert.DeserializeObject<string>(payload);
+            int handle = 0;
+            SendResponse(socket, "HANDLE", handle.ToString());
+            return true;
+        }
+
+        private bool Settings(ResponseSocket socket, string payload)
         {
             var settings = JsonConvert.DeserializeObject<PropertyPair[]>(payload);
+
+            foreach (var setting in settings)
+            {
+                Dispatcher.Invoke(() =>
+                {
+
+                    if (Properties.Any(x => x.PropertyName.Equals(setting.PropertyName)))
+                    {
+                        var found = Properties.Single(x => x.PropertyName.Equals(setting.PropertyName));
+                        Properties.Remove(found);
+                    }
+                    Properties.Add(setting);
+                    Notify(nameof(Properties));
+                });
+            }
+
+            return false;
         }
     }
 }

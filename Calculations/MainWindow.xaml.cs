@@ -23,6 +23,7 @@ namespace AutomotiveNVHSuite
         public MainWindow()
         {
             InitializeComponent();
+            ViewModel.Dispatcher = Dispatcher;
         }
 
         private void ButtonStartRemote_Click(object sender, RoutedEventArgs e)

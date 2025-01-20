@@ -15,8 +15,14 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Start remote" Grid.Row="0" Grid.Column="0" Click="ButtonStartRemote_Click"/>
-        <Button Content="Stop remote" Grid.Row="0" Grid.Column="1" Click="ButtonStopRemote_Click"/>
+        <ListView ItemsSource="{Binding Properties}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Parameter" DisplayMemberBinding="{Binding PropertyName}"/>
+                    <GridViewColumn Header="Value" DisplayMemberBinding="{Binding PropertyValue}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 

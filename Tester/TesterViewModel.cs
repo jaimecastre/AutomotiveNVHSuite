@@ -25,6 +25,8 @@ namespace Tester
         public void CommandLoadFile(string name)
         {
             SendCommand(_socket, "LOADFILE", JsonConvert.SerializeObject(name));
+            var ans = AwaitResponse(_socket, "HANDLE");
+            var handle = int.Parse(ans);
         }
 
         public void CommandSettings()
@@ -36,6 +38,7 @@ namespace Tester
             };
 
             SendCommand(_socket, "SETTINGS", JsonConvert.SerializeObject(settings));
+            AwaitResponse(_socket, "ACK");
         }
 
         private void SendCommand(RequestSocket socket, string command, string payload)
@@ -46,8 +49,17 @@ namespace Tester
                 Payload = payload
             };
             socket.SendFrame(JsonConvert.SerializeObject(cmd));
-            var ans = socket.ReceiveFrameString();
-            // Check ACK
+        }
+
+        private string AwaitResponse(RequestSocket socket, string response)
+        {
+            var str = socket.ReceiveFrameString();
+            var cmd = JsonConvert.DeserializeObject<CommandAndPayload>(str);
+
+            if (cmd.Command != response)
+                throw new InvalidOperationException();
+
+            return cmd.Payload;
         }
     }
 }
