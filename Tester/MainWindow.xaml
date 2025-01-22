@@ -14,10 +14,19 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         
         <Button Content="Load file" Grid.Column="0" Grid.Row="0" Click="Button_LoadFile_Click"/>
+        <TextBox Text="{Binding FileName}" Grid.Column="0" Grid.Row="1"/>
+
         <Button Content="Settings" Grid.Column="1" Grid.Row="0" Click="Button_Settings_Click"/>
+
+        <Button Content="File info" Grid.Column="1" Grid.Row="1" Click="Button_FileInfo_Click"/>
+        <Button Content="Get data" Grid.Column="1" Grid.Row="2" Click="Button_GetData_Click"/>
+
+        <TextBox Text="{Binding ResponseReceived}" Grid.Column="0" Grid.Row="3"/>
     </Grid>
 
     <Window.DataContext>

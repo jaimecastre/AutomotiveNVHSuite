@@ -25,12 +25,22 @@ namespace Tester
 
         private void Button_LoadFile_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.CommandLoadFile("c:\\ghej");
+            ViewModel.CommandLoadFile();
         }
 
         private void Button_Settings_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CommandSettings();
+        }
+
+        private void Button_FileInfo_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CommandFileInfo();
+        }
+
+        private void Button_GetData_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

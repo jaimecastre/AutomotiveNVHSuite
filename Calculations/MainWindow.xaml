@@ -15,7 +15,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Properties}">
+        <ListView ItemsSource="{Binding Properties}" Grid.Column="0" Grid.Row="0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parameter" DisplayMemberBinding="{Binding PropertyName}"/>
@@ -23,6 +23,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox Text="{Binding CommandReceived}" Grid.Column="0" Grid.Row="1"/>
     </Grid>
 
 

@@ -18,7 +18,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -36,29 +36,126 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\..\Connect\Source\Publish\BKPlatformPublicKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AsyncIO, Version=0.1.69.0, Culture=neutral, PublicKeyToken=44a94435bd6f33f8, processorArchitecture=MSIL">
       <HintPath>..\packages\AsyncIO.0.1.69\lib\net40\AsyncIO.dll</HintPath>
-      <Private>True</Private>
     </Reference>
+    <Reference Include="BK.Platform.Data.DataAccess-File">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataAccess-File.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataAccess-Interfaces">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataAccess-Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.Database-Factory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.Database-Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.Database-Interfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.Database-Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.Database-Server-SQLite">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.Database-Server-SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.Database-Server-SQLServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.Database-Server-SQLServer.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataImport-DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataImport-DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataImport-Interfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataImport-Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataImport-Manager">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataImport-Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataModel">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataModel-Core">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataModel-Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataModel-Core-Browser">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataModel-Core-Browser.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataModel-Core-Interfaces">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataModel-Core-Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataModel-Interfaces">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataModel-Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.DataTypes, Version=1.1.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.FileFormat-BkcNT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.FileFormat-BkcNT.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Data.FileFormat-Pti">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.FileFormat-Pti.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.SignalAnalysis.DataSequenceImporter">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.SignalAnalysis.DataSequenceImporter.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Utility.Asynchronous, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Utility.Asynchronous.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.SourcePathContribution.ApplicationModel">
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.SourcePathContribution.ApplicationModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BKCorLib, Version=1.7.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BKCorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Localization, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d64412599724c860" />
     <Reference Include="NaCl, Version=0.1.13.0, Culture=neutral, PublicKeyToken=827c20e50a9775fa, processorArchitecture=MSIL">
       <HintPath>..\packages\NaCl.Net.0.1.13\lib\net472\NaCl.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NetMQ, Version=4.0.1.13, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
       <HintPath>..\packages\NetMQ.4.0.1.13\lib\net47\NetMQ.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Parameter, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\Parameter.dll</HintPath>
+    </Reference>
+    <Reference Include="Parameter-Interfaces, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\Parameter-Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.92.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
       <Private>True</Private>
@@ -85,6 +182,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -94,12 +192,15 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Unit-Interfaces, Version=1.3.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\Unit-Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ZeroMQ, Version=4.1.0.31, Culture=neutral, PublicKeyToken=4a9630883fd6c563, processorArchitecture=MSIL">
       <HintPath>..\packages\ZeroMQ.4.1.0.31\lib\net40\ZeroMQ.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +243,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="..\..\..\Connect\Source\Publish\BKPlatformPublicKey.snk">
+      <Link>BKPlatformPublicKey.snk</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -160,5 +264,8 @@
     <Error Condition="!Exists('packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets'))" />
     <Error Condition="!Exists('..\packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>Call "c:\HBK\Dev\Connect\Source\BuildScripts\PublishProject.bat" "$(ProjectDir)" "$(TargetDir)" "$(TargetName)" "$(ConfigurationName)" "$(PlatformName)"</PostBuildEvent>
+  </PropertyGroup>
   <Import Project="..\packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets" Condition="Exists('..\packages\ZeroMQ.4.1.0.31\build\net40\ZeroMQ.targets')" />
 </Project>

@@ -18,5 +18,15 @@ namespace AutomotiveNVHSuite
         public string PropertyValue { get; set; }
     }
 
+    public class FileInformation
+    {
+        public int NumSequences;
+        public string[] SequenceNames;
+    }
+
+    public class FileContents
+    {
+        
+    }
     //public class Handle
 }
