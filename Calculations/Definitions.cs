@@ -26,7 +26,19 @@ namespace AutomotiveNVHSuite
 
     public class FileContents
     {
-        
+        public SignalGroup[] Groups;
+    }
+
+    public class Signal
+    {
+        public string Name;
+        public double[] Values;
+    }
+
+    public class SignalGroup
+    {
+        public Signal Axis;
+        public Signal[] Signals;
     }
     //public class Handle
 }

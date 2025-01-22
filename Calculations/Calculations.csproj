@@ -49,6 +49,10 @@
     <Reference Include="AsyncIO, Version=0.1.69.0, Culture=neutral, PublicKeyToken=44a94435bd6f33f8, processorArchitecture=MSIL">
       <HintPath>..\packages\AsyncIO.0.1.69\lib\net40\AsyncIO.dll</HintPath>
     </Reference>
+    <Reference Include="BK.IDPB.SignalAnalysis.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.IDPB.SignalAnalysis.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="BK.Platform.Data.DataAccess-File">
       <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Data.DataAccess-File.dll</HintPath>
     </Reference>
@@ -117,6 +121,10 @@
     <Reference Include="BK.Platform.Utility.Asynchronous, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Utility.Asynchronous.dll</HintPath>
+    </Reference>
+    <Reference Include="BK.Platform.Utility.Interpolation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d64412599724c860, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.Platform.Utility.Interpolation.dll</HintPath>
     </Reference>
     <Reference Include="BK.SourcePathContribution.ApplicationModel">
       <HintPath>..\..\..\Connect\Source\Publish\Release\NT64\BK.SourcePathContribution.ApplicationModel.dll</HintPath>

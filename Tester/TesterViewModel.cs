@@ -58,8 +58,8 @@ namespace Tester
 
         public void CommandGetData()
         {
-            SendCommand(_socket, "GETDATA", JsonConvert.SerializeObject("0"));
-            AwaitResponse(_socket, "DATA");
+            SendCommand(_socket, "FILECONTENTS", JsonConvert.SerializeObject("0"));
+            AwaitResponse(_socket, "FILECONTENTS");
         }
 
         private void SendCommand(RequestSocket socket, string command, string payload)

@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Threading;
+using BK.Platform.Data;
 using BK.Platform.Data.DataAccess;
 using BK.Platform.Data.DataAccess.Internal;
 using BK.Platform.Data.DataModel;
@@ -97,7 +99,7 @@ namespace AutomotiveNVHSuite
 
                     var cmd = JsonConvert.DeserializeObject<CommandAndPayload>(str);
                     bool responded = false;
-                    switch (cmd.Command)
+                    switch (cmd.Command.ToUpper())
                     {
                         case "LOADFILE":
                             responded = LoadFile(socket, cmd.Payload);
@@ -105,6 +107,10 @@ namespace AutomotiveNVHSuite
 
                         case "FILEINFO":
                             responded = FileInfo(socket, cmd.Payload);
+                            break;
+
+                        case "FILECONTENTS":
+                            responded = GetFileContents(socket, cmd.Payload);
                             break;
 
                         case "SETTINGS":
@@ -159,6 +165,34 @@ namespace AutomotiveNVHSuite
             };
 
             SendResponse(socket, "FILEINFO", JsonConvert.SerializeObject(response));
+
+            return true;
+        }
+
+        private bool GetFileContents(ResponseSocket socket, string payload)
+        {
+            var handle = JsonConvert.DeserializeObject<int>(payload);
+
+            var actions = _actions[handle];
+            var groups = actions.SelectMany(x => x.OutputGroups);
+            var seqs = groups.SelectMany(x => x.DataSequences);
+
+            var sigs = BK.IDPB.SignalAnalysis.Shared.SignalContainerCreator.CreateFromSequences<BKTimeSpan, float>(seqs);
+
+            Signal CreateSignal(string name) => new Signal { Name = name, Values = Enumerable.Range(0, 10).Select(x => (double)x).ToArray() };
+            SignalGroup CreateSignalGroup(BK.IDPB.SignalAnalysis.Shared.SignalContainer.SignalGroup<BKTimeSpan, float> grp)
+                => new SignalGroup
+                {
+                    Axis = CreateSignal("Time"),
+                    Signals = grp.Select(x => CreateSignal(x.Value.Description.Name)).ToArray()
+                };
+
+            var response = new FileContents
+            {
+                Groups = sigs.Float.Select(x => CreateSignalGroup(x.Value)).ToArray()
+            };
+
+            SendResponse(socket, "FILECONTENTS", JsonConvert.SerializeObject(response));
 
             return true;
         }

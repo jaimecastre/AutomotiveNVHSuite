@@ -40,7 +40,7 @@ namespace Tester
 
         private void Button_GetData_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewModel.CommandGetData();
         }
     }
 }
