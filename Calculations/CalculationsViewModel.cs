@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
+using BK.IDPB.SignalAnalysis.Shared;
 using BK.Platform.Data;
 using BK.Platform.Data.DataAccess;
 using BK.Platform.Data.DataAccess.Internal;
@@ -16,6 +17,7 @@ using NetMQ;
 using NetMQ.Sockets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SciChart.Charting.Visuals;
 
 namespace AutomotiveNVHSuite
 {
@@ -27,6 +29,7 @@ namespace AutomotiveNVHSuite
 
         int _handleNext = 0;
         IDictionary<int, IEnumerable<IActionDataProducing>> _actions = new Dictionary<int, IEnumerable<IActionDataProducing>>();
+        IDictionary<int, SciChartSurface> _graphs = new Dictionary<int, SciChartSurface>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -44,6 +47,8 @@ namespace AutomotiveNVHSuite
         public System.Collections.ObjectModel.ObservableCollection<PropertyPair> Properties { get; } = new System.Collections.ObjectModel.ObservableCollection<PropertyPair>();
 
         public string CommandReceived { get; set; }
+
+        public IDictionary<int, SciChartSurface> Graphs { get; set; }
 
         public Dispatcher Dispatcher { get; set; }
 
@@ -113,6 +118,10 @@ namespace AutomotiveNVHSuite
                             responded = GetFileContents(socket, cmd.Payload);
                             break;
 
+                        case "CREATEPLOT":
+                            responded = CreatePlot(socket, cmd.Payload);
+                            break;
+
                         case "SETTINGS":
                             Settings(socket, cmd.Payload);
                             break;
@@ -169,6 +178,18 @@ namespace AutomotiveNVHSuite
             return true;
         }
 
+        private bool CreatePlot(ResponseSocket socket, string payload)
+        {
+
+            int handle = _handleNext++;
+            var chart = new SciChartSurface();
+            chart.Name = $"Graph {handle}";
+
+            Graphs[handle] = chart;
+            Notify(nameof(Graphs));
+
+            return true;
+        }
         private bool GetFileContents(ResponseSocket socket, string payload)
         {
             var handle = JsonConvert.DeserializeObject<int>(payload);
@@ -179,12 +200,18 @@ namespace AutomotiveNVHSuite
 
             var sigs = BK.IDPB.SignalAnalysis.Shared.SignalContainerCreator.CreateFromSequences<BKTimeSpan, float>(seqs);
 
-            Signal CreateSignal(string name) => new Signal { Name = name, Values = Enumerable.Range(0, 10).Select(x => (double)x).ToArray() };
+            int N = 1024;
+
+            float[] GetValues(SignalRepresentation<BKTimeSpan, float> sig) => sig.Vector.Take(N).ToArray();
+            float[] GetTimeValues(DataRepresentation<BKTimeSpan> sig) => sig.Vector.Take(N).Select(x => (float)x.TotalSeconds).ToArray();
+            //Enumerable.Range(0, 10).Select(x => (double)x).ToArray();
+            Signal CreateSignal(SignalRepresentation<BKTimeSpan, float> sig) => new Signal { Name = sig.Description.Name, Values = GetValues(sig) };
+            Signal CreateTimeSignal(DataRepresentation<BKTimeSpan> sig) => new Signal { Name = "Time", Values = GetTimeValues(sig) };
             SignalGroup CreateSignalGroup(BK.IDPB.SignalAnalysis.Shared.SignalContainer.SignalGroup<BKTimeSpan, float> grp)
                 => new SignalGroup
                 {
-                    Axis = CreateSignal("Time"),
-                    Signals = grp.Select(x => CreateSignal(x.Value.Description.Name)).ToArray()
+                    Axis = CreateTimeSignal(grp.AxisSignal),
+                    Signals = grp.Select(x => CreateSignal(x.Value)).ToArray()
                 };
 
             var response = new FileContents

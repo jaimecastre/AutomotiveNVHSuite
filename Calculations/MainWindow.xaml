@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView ItemsSource="{Binding Properties}" Grid.Column="0" Grid.Row="0">
             <ListView.View>
@@ -24,6 +25,7 @@
             </ListView.View>
         </ListView>
         <TextBox Text="{Binding CommandReceived}" Grid.Column="0" Grid.Row="1"/>
+        <StackPanel x:Name="_panel" Grid.Column="0" Grid.Row="2"/>
     </Grid>
 
 

@@ -32,7 +32,7 @@ namespace AutomotiveNVHSuite
     public class Signal
     {
         public string Name;
-        public double[] Values;
+        public float[] Values;
     }
 
     public class SignalGroup
